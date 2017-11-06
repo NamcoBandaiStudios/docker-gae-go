@@ -1,6 +1,6 @@
 FROM circleci/golang:1.9.0
 
-ENV APPENGINE_VERSION=1.9.59
+ENV APPENGINE_VERSION=1.9.60
 ENV HOME=/home/circleci
 ENV SDK=https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${APPENGINE_VERSION}.zip \
     PACKAGES="unzip git nodejs python-pygments" \
