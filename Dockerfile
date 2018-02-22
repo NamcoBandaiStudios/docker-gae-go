@@ -24,4 +24,5 @@ RUN mkdir -p ${HOME}/hugo cd ${HOME}/hugo && wget https://github.com/spf13/hugo/
 # Install util
 RUN sudo npm install -g yarn
 RUN goapp get golang.org/x/tools/cmd/goimports
+RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 #RUN goapp get github.com/jstemmer/go-junit-report
