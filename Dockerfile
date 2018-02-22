@@ -1,6 +1,6 @@
 FROM circleci/golang:1.9.0
 
-ENV APPENGINE_VERSION=1.9.60
+ENV APPENGINE_VERSION=1.9.62
 ENV HOME=/home/circleci
 ENV SDK=https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${APPENGINE_VERSION}.zip \
     PACKAGES="unzip git nodejs python-pygments" \
@@ -23,4 +23,6 @@ RUN mkdir -p ${HOME}/hugo cd ${HOME}/hugo && wget https://github.com/spf13/hugo/
 
 # Install util
 RUN sudo npm install -g yarn
+RUN goapp get golang.org/x/tools/cmd/goimports
+RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 #RUN goapp get github.com/jstemmer/go-junit-report
