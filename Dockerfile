@@ -28,6 +28,8 @@ RUN curl -sL -O https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSI
 
 # Install util
 RUN sudo npm install -g yarn \
-    && goapp get golang.org/x/tools/cmd/goimports \
+    && go get -u gopkg.in/alecthomas/gometalinter.v2 \
+    && ln -s $GOPATH/bin/gometalinter.v2 $GOPATH/bin/gometalinter \
+    && gometalinter --install \
     && curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 #RUN goapp get github.com/jstemmer/go-junit-report
