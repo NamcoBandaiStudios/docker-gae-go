@@ -1,4 +1,4 @@
-FROM circleci/golang:1.9.0
+FROM circleci/golang:1.10.2
 
 ENV APPENGINE_VERSION=1.9.64
 ENV HOME=/home/circleci
