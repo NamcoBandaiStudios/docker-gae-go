@@ -8,6 +8,7 @@ ENV SDK=https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN sudo apt-get update && sudo apt-get install -y musl-dev nodejs python-pygments && \
     curl -fo /tmp/gae.zip ${SDK} && unzip -q /tmp/gae.zip -d /tmp/ && mv /tmp/go_appengine ${HOME}/go_appengine && \
+    rm /tmp/gae.zip && \
     sudo apt-get clean
 
 # Install Hugo
