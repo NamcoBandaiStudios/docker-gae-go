@@ -14,7 +14,7 @@ RUN sudo apt-get update && sudo apt-get install -y musl-dev nodejs python-pygmen
 ENV HUGO_VERSION 0.30.2
 ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux-64bit
 
-RUN mkdir -p ${HOME}/hugo cd ${HOME}/hugo && wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY}.tar.gz  \
+RUN wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY}.tar.gz  \
     && tar xzf ${HUGO_BINARY}.tar.gz  \
 	&& sudo mv hugo /usr/local/bin/hugo \
 	&& rm ${HUGO_BINARY}.tar.gz
