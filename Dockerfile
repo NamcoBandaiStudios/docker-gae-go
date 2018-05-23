@@ -6,10 +6,16 @@ ENV SDK=https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_
     PATH=${HOME}/go_appengine:${PATH}
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-RUN sudo apt-get update && sudo apt-get install -y musl-dev nodejs python-pygments && \
-    curl -fo /tmp/gae.zip ${SDK} && unzip -q /tmp/gae.zip -d /tmp/ && mv /tmp/go_appengine ${HOME}/go_appengine && \
-    rm /tmp/gae.zip && \
-    sudo apt-get clean
+RUN sudo apt-get update && sudo apt-get install -y \
+    musl-dev \
+    nodejs \
+    python-pygments \
+    && sudo apt-get clean \
+    && sudo rm -rf /var/lib/apt/lists/* \
+    && curl -fo /tmp/gae.zip ${SDK} \
+    && unzip -q /tmp/gae.zip -d /tmp/ \
+    && mv /tmp/go_appengine ${HOME}/go_appengine \
+    && rm /tmp/gae.zip
 
 # Install Hugo
 ENV HUGO_VERSION 0.30.2
@@ -21,7 +27,7 @@ RUN curl -sL -O https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSI
     && rm ${HUGO_BINARY}.tar.gz
 
 # Install util
-RUN sudo npm install -g yarn
-RUN goapp get golang.org/x/tools/cmd/goimports
-RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+RUN sudo npm install -g yarn \
+    && goapp get golang.org/x/tools/cmd/goimports \
+    && curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 #RUN goapp get github.com/jstemmer/go-junit-report
