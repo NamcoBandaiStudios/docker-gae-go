@@ -1,14 +1,12 @@
-FROM circleci/golang:1.10.2
+FROM circleci/golang:1.10-node
 
-ENV APPENGINE_VERSION=1.9.67
+ENV APPENGINE_VERSION=1.9.68
 ENV HOME=/home/circleci
 ENV SDK=https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${APPENGINE_VERSION}.zip \
     PATH=${HOME}/go_appengine:${PATH}
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN sudo apt-get update && sudo apt-get install -y \
     musl-dev \
-    nodejs \
     python-pygments \
     && sudo apt-get clean \
     && sudo rm -rf /var/lib/apt/lists/* \
@@ -28,8 +26,6 @@ RUN curl -sL -O https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSI
 
 # Install util
 RUN sudo npm install -g yarn \
-    && go get -u gopkg.in/alecthomas/gometalinter.v2 \
-    && ln -s $GOPATH/bin/gometalinter.v2 $GOPATH/bin/gometalinter \
-    && gometalinter --install \
-    && curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+    && curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh \
+    && curl https://raw.githubusercontent.com/alecthomas/gometalinter/master/scripts/install.sh | sudo -E sh
 #RUN goapp get github.com/jstemmer/go-junit-report
