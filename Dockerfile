@@ -1,14 +1,12 @@
-FROM circleci/golang:1.10
+FROM circleci/golang:1.10-node
 
 ENV APPENGINE_VERSION=1.9.68
 ENV HOME=/home/circleci
 ENV SDK=https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${APPENGINE_VERSION}.zip \
     PATH=${HOME}/go_appengine:${PATH}
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN sudo apt-get update && sudo apt-get install -y \
     musl-dev \
-    nodejs \
     python-pygments \
     && sudo apt-get clean \
     && sudo rm -rf /var/lib/apt/lists/* \
