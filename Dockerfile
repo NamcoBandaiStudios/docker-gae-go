@@ -1,6 +1,6 @@
 FROM circleci/golang:1.10
 
-ENV APPENGINE_VERSION=1.9.67
+ENV APPENGINE_VERSION=1.9.68
 ENV HOME=/home/circleci
 ENV SDK=https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${APPENGINE_VERSION}.zip \
     PATH=${HOME}/go_appengine:${PATH}
